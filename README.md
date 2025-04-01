@@ -1,8 +1,9 @@
 🌐 Live Demo:
+
 Deployed URL: https://todo-6ooxtshn4-shahins-projects-430e94f7.vercel.app
 
 **MOST IMPORTANT STEP TO LOGIN IN WEBAPP**
-  - Test with Sample Credentials: (Given Below)
+  - Test with Sample Credentials: (Given Below - user for login)
   - Email: abc@abc.com
   - Password: abc123
 
@@ -74,7 +75,7 @@ The app will launch at http://localhost:3000.
 
 
 
-📧 Contact:
+## 📧 Contact:
 For any questions or feedback, feel free to reach out:
 
 GitHub: shahin-314

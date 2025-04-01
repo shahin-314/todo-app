@@ -1,4 +1,4 @@
-🌐 Live Demo: (use email and password given below this section)
+🌐 Live Demo: (use email and password given below this section to login)
 
 Deployed URL: https://todo-6ooxtshn4-shahins-projects-430e94f7.vercel.app
 

@@ -62,20 +62,22 @@ To run the app locally, follow these steps:
    npm start
 The app will launch at http://localhost:3000.
 
-#📝 Notes:
+##📝 Notes:
 
   The app uses the OpenWeatherMap API to fetch weather data based on the user's location. If        location access is denied, it defaults to London's weather.
   Firebase Authentication and Firestore ensure secure and user-specific task management.
   The app is fully responsive and works across all devices.
 
-📸 Screenshots
+##📸 Screenshots
 ![image](https://github.com/user-attachments/assets/641db3e8-3687-48ea-b450-5f76c3ed285a)
+
 
 
 📧 Contact:
 For any questions or feedback, feel free to reach out:
 
 GitHub: shahin-314
+
 Email: shahinsiddiqui123@hotmail.com
 
 Built with 💖 by Shahin Siddiqui for the React JS Internship at Quadbtech.

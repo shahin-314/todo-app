@@ -3,7 +3,7 @@ Deployed URL: https://todo-rhoewsuqv-shahins-projects-430e94f7.vercel.app
 
 # 🌟 Advanced React To-Do App
 
-MOST IMPORTANT TO STEP TO LOGIN IN WEBAPP 
+MOST IMPORTANT STEP TO LOGIN IN WEBAPP.
   Test with Sample Credentials:
   Email: abc@abc.com
   Password: abc123

@@ -1,0 +1,47 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  input, select, button {
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  
+  /* Mobile-first design */
+  @media (max-width: 600px) {
+    form {
+      flex-direction: column;
+    }
+  
+    input, select, button {
+      width: 100%;
+    }
+  
+    li {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }

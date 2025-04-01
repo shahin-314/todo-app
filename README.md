@@ -10,11 +10,19 @@ Deployed URL: https://todo-6ooxtshn4-shahins-projects-430e94f7.vercel.app
 
 Welcome to the **Advanced React To-Do App**! 🎉 This is a responsive, feature-rich to-do application built with modern web technologies. It allows users to manage tasks with priorities, integrates user authentication, and is designed to be scalable and user-friendly.
 
-🌟 Why This Project Stands Out
-Dynamic Weather: Fetches weather data based on the user's location, making it more personalized.
-Secure Authentication: Uses Firebase for secure user management.
-Modern Tech Stack: Built with React, Redux, and Firebase for a robust and scalable app.
-User-Friendly: Clean UI with responsive design for a seamless experience.
+🌟 Why This Project Stands Out:
+
+Dynamic Weather: 
+- Fetches weather data based on the user's location, making it more personalized.
+
+Secure Authentication: 
+- Uses Firebase for secure user management.
+
+Modern Tech Stack: 
+- Built with React, Redux, and Firebase for a robust and scalable app.
+
+User-Friendly: 
+- Clean UI with responsive design for a seamless experience.
 
 ## 🚀 Features
 

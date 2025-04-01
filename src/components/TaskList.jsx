@@ -56,17 +56,24 @@ const TaskList = () => {
     <div>
       <h2>Task List</h2>
       {error && <p className="text-danger">{error}</p>}
-      {weather && city && <p>Current Temperature in {city}: {weather}°C</p>}
+      {weather && city && (
+        <p className="text-muted">
+          Current Temperature in {city}: {weather}°C
+        </p>
+      )}
       <ul>
         {tasks.map((task) => (
-          <li key={task.id}>
-            {task.text} - <strong>{task.priority}</strong>
-            <button
-              className="btn btn-danger btn-sm ms-2"
-              onClick={() => dispatch(deleteTaskFromFirestore(user.uid, task.id))}
-            >
-              Delete
-            </button>
+          <li key={task.id} className={task.priority.toLowerCase()}>
+            <span>{task.text}</span>
+            <div>
+              <strong>{task.priority}</strong>
+              <button
+                className="btn btn-danger ms-2"
+                onClick={() => dispatch(deleteTaskFromFirestore(user.uid, task.id))}
+              >
+                <i className="bi bi-trash"></i> Delete
+              </button>
+            </div>
           </li>
         ))}
       </ul>

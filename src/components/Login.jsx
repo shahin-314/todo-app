@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      dispatch(setUser(userCredential.user)); // Save user to Redux
+      dispatch(setUser(userCredential.user));
       setError(null);
     } catch (err) {
       setError('Failed to log in. Please check your email and password.');
@@ -23,13 +23,12 @@ const Login = () => {
 
   return (
     <div>
-      <h3>Login</h3>
-      {error && <p className="text-danger">{error}</p>}
+      <h3 className="text-center">Login</h3>
+      {error && <p className="text-danger text-center">{error}</p>}
       <form onSubmit={handleLogin}>
         <div className="mb-3">
           <input
             type="email"
-            className="form-control"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -38,13 +37,14 @@ const Login = () => {
         <div className="mb-3">
           <input
             type="password"
-            className="form-control"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-primary">Login</button>
+        <button type="submit" className="btn btn-primary w-100">
+          <i className="bi bi-box-arrow-in-right"></i> Login
+        </button>
       </form>
     </div>
   );

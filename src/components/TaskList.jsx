@@ -8,6 +8,7 @@ const TaskList = () => {
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const [weather, setWeather] = useState(null);
+  const [city, setCity] = useState(''); // To store the city name
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -17,28 +18,45 @@ const TaskList = () => {
   }, [user, dispatch]);
 
   useEffect(() => {
-    const fetchWeather = async () => {
+    const fetchWeather = async (lat, lon) => {
       try {
-        // Comment out the API call for now
-        // const response = await axios.get(
-        //   `https://api.openweathermap.org/data/2.5/weather?q=London&appid=92157381ca10394906a29dc73237cade&units=metric`
-        // );
-        // setWeather(response.data.main.temp);
-        // setError(null);
-        setError('Weather API is temporarily disabled due to activation delay');
+        const response = await axios.get(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=92157381ca10394906a29dc73237cade&units=metric`
+        );
+        setWeather(response.data.main.temp);
+        setCity(response.data.name); // Store the city name
+        setError(null);
       } catch (err) {
         setError('Failed to fetch weather data');
         setWeather(null);
+        setCity('');
       }
     };
-    fetchWeather();
+
+    // Get user's location using Geolocation API
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          fetchWeather(latitude, longitude); // Fetch weather using user's coordinates
+        },
+        (err) => {
+          setError('Unable to get your location. Showing weather for London instead.');
+          // Fallback to London if geolocation fails
+          fetchWeather(51.5085, -0.1257); // London's coordinates
+        }
+      );
+    } else {
+      setError('Geolocation is not supported by your browser. Showing weather for London instead.');
+      fetchWeather(51.5085, -0.1257); // London's coordinates
+    }
   }, []);
 
   return (
     <div>
       <h2>Task List</h2>
       {error && <p className="text-danger">{error}</p>}
-      {weather && <p>Current Temperature in London: {weather}°C</p>}
+      {weather && city && <p>Current Temperature in {city}: {weather}°C</p>}
       <ul>
         {tasks.map((task) => (
           <li key={task.id}>

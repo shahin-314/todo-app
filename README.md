@@ -1,12 +1,13 @@
 🌐 Live Demo:
-Deployed URL: https://todo-rhoewsuqv-shahins-projects-430e94f7.vercel.app
+Deployed URL: https://todo-6ooxtshn4-shahins-projects-430e94f7.vercel.app
 
 **MOST IMPORTANT STEP TO LOGIN IN WEBAPP**
   - Test with Sample Credentials: (Given Below)
   - Email: abc@abc.com
   - Password: abc123
 
-# 🌟 Advanced React To-Do App
+# 🌟 Advanced React To-Do App:
+
 Welcome to the **Advanced React To-Do App**! 🎉 This is a responsive, feature-rich to-do application built with modern web technologies. It allows users to manage tasks with priorities, integrates user authentication, and is designed to be scalable and user-friendly.
 
 🌟 Why This Project Stands Out
@@ -66,7 +67,7 @@ The app will launch at http://localhost:3000.
 Coming soon! Stay tuned for a visual tour of the app.
 
 📧 Contact:
-  For any questions or feedback, feel free to reach out:
+For any questions or feedback, feel free to reach out:
 
 GitHub: shahin-314
 Email: shahinsiddiqui123@hotmail.com

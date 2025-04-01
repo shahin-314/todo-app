@@ -2,7 +2,7 @@
 Deployed URL: https://todo-rhoewsuqv-shahins-projects-430e94f7.vercel.app
 
 **MOST IMPORTANT STEP TO LOGIN IN WEBAPP**
-  - Test with Sample Credentials:
+  - Test with Sample Credentials: (Given Below)
   - Email: abc@abc.com
   - Password: abc123
 

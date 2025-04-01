@@ -4,9 +4,9 @@ Deployed URL: https://todo-rhoewsuqv-shahins-projects-430e94f7.vercel.app
 # 🌟 Advanced React To-Do App
 
 MOST IMPORTANT STEP TO LOGIN IN WEBAPP.
-  Test with Sample Credentials:
-  Email: abc@abc.com
-  Password: abc123
+  -Test with Sample Credentials:
+  -Email: abc@abc.com
+  -Password: abc123
 
 
 Welcome to the **Advanced React To-Do App**! 🎉 This is a responsive, feature-rich to-do application built with modern web technologies. It allows users to manage tasks with priorities, integrates user authentication, and is designed to be scalable and user-friendly.

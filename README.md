@@ -12,13 +12,13 @@ Welcome to the **Advanced React To-Do App**! 🎉 This is a responsive, feature-
 
 🌟 Why This Project Stands Out:
 
-**Dynamic Weather:** 
+- **Dynamic Weather:** 
 - Fetches weather data based on the user's location, making it more personalized.
-**Secure Authentication:** 
+- **Secure Authentication:** 
 - Uses Firebase for secure user management.
-**Modern Tech Stack:**
+- **Modern Tech Stack:**
 - Built with React, Redux, and Firebase for a robust and scalable app.
-**User-Friendly:** 
+- **User-Friendly:** 
 - Clean UI with responsive design for a seamless experience.
 
 ## 🚀 Features

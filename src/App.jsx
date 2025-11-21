@@ -73,9 +73,9 @@ function App() {
     <div className="app-container">
       <nav className="navbar">
         <h1 className="navbar-title">Advanced To-Do App</h1>
-        <div className="navbar-user">
-          <span>Welcome!</span>  // ← Yeh hona chahiye, login nahi
-        </div>
+        {/* <div className="navbar-user">
+          <span>Welcome!</span> 
+        </div> */}
       </nav>
       <div className="content-container">
         <div className="card">

@@ -120,9 +120,9 @@ const TaskList = () => {
         setWeather(res.data.main.temp);
         setCity(res.data.name);
       } catch {
-        setError('Weather unavailable');
-        setWeather(null);
-      }
+  setError('Weather unavailable - using fallback');
+  setWeather(25); // Mock temp for testing
+  setCity('Your City'); }
     };
 
     if (navigator.geolocation) {

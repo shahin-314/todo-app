@@ -71,15 +71,12 @@ import './styles/App.css';
 function App() {
   return (
     <div className="app-container">
-      {/* Navbar */}
       <nav className="navbar">
         <h1 className="navbar-title">Advanced To-Do App</h1>
         <div className="navbar-user">
-          <span>Welcome!</span>
+          <span>Welcome!</span>  // ← Yeh hona chahiye, login nahi
         </div>
       </nav>
-
-      {/* Main Content */}
       <div className="content-container">
         <div className="card">
           <TaskInput />

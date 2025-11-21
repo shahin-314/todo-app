@@ -86,26 +86,31 @@
 //################################################
 
 // src/components/TaskList.jsx
+
+// src/components/TaskList.jsx
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchTasks, deleteTaskFromFirestore } from '../redux/taskSlice';
 import axios from 'axios';
 
 const TaskList = () => {
   const dispatch = useDispatch();
-  const [tasks, setTasks] = useState([]);
+  
+  // Yeh Redux se tasks lega (sabse latest)
+  const tasks = useSelector((state) => state.tasks?.tasks || []);
+  
   const [weather, setWeather] = useState(null);
   const [city, setCity] = useState('');
   const [error, setError] = useState(null);
+  
   const MOCK_USER_ID = 'demo-user-2025';
 
+  // Tasks load karne ke liye
   useEffect(() => {
-    dispatch(fetchTasks(MOCK_USER_ID)).then((res) => {
-      if (res.payload) setTasks(res.payload);
-    });
-  }, [dispatch]);
+    dispatch(fetchTasks(MOCK_USER_ID));
+  }, [dispatch, MOCK_USER_ID]);
 
-  // Weather code same rahega
+  // Weather fetch karne ke liye
   useEffect(() => {
     const fetchWeather = async (lat, lon) => {
       try {
@@ -114,43 +119,64 @@ const TaskList = () => {
         );
         setWeather(res.data.main.temp);
         setCity(res.data.name);
-      } catch  {
+      } catch {
         setError('Weather unavailable');
+        setWeather(null);
       }
     };
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (pos) => fetchWeather(pos.coords.latitude, pos.coords.longitude),
+        (pos) => fetchWeather(pos.coords.latitude, pos.coords.coords.longitude),
         () => fetchWeather(51.5074, -0.1278) // London fallback
       );
+    } else {
+      fetchWeather(51.5074, -0.1278);
     }
   }, []);
 
   const handleDelete = (taskId) => {
     dispatch(deleteTaskFromFirestore(MOCK_USER_ID, taskId));
-    setTasks(tasks.filter(t => t.id !== taskId));
+    // Redux khud update ho jayega, extra setTasks ki zarurat nahi
   };
 
   return (
     <div>
       <h2>Task List</h2>
       {error && <p className="text-danger">{error}</p>}
-      {weather && <p className="text-muted">Current Temp in {city}: {weather}°C</p>}
+      {weather !== null && (
+        <p className="text-muted">Current Temp in {city}: {weather}°C</p>
+      )}
 
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id} className={task.priority.toLowerCase()}>
-            <span>{task.text}</span>
-            <div>
-              <strong>{task.priority}</strong>
-              <button className="btn btn-danger ms-2" onClick={() => handleDelete(task.id)}>
-                Delete
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+      {tasks.length === 0 ? (
+        <p>No tasks yet. Add one above!</p>
+      ) : (
+        <ul className="list-group mt-3">
+          {tasks.map((task) => (
+            <li
+              key={task.id}
+              className={`list-group-item d-flex justify-content-between align-items-center ${
+                task.priority === 'High'
+                  ? 'list-group-item-danger'
+                  : task.priority === 'Medium'
+                  ? 'list-group-item-warning'
+                  : 'list-group-item-success'
+              }`}
+            >
+              <span>{task.text}</span>
+              <div>
+                <span className="badge bg-primary me-2">{task.priority}</span>
+                <button
+                  className="btn btn-sm btn-danger"
+                  onClick={() => handleDelete(task.id)}
+                >
+                  Delete
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

@@ -71,16 +71,19 @@ import './styles/App.css';
 function App() {
   return (
     <div className="app-container">
-      <nav className="navbar">
-        <h1 className="navbar-title">Advanced To-Do App</h1>
-        {/* <div className="navbar-user">
-          <span>Welcome!</span> 
-        </div> */}
+      <nav className="navbar bg-primary text-white mb-4">
+        <div className="container-fluid">
+          <h1 className="navbar-brand mb-0 h1">Advanced To-Do App</h1>
+          <span>Welcome!</span>
+        </div>
       </nav>
-      <div className="content-container">
-        <div className="card">
-          <TaskInput />
-          <TaskList />
+
+      <div className="container">
+        <div className="card shadow">
+          <div className="card-body">
+            <TaskInput />
+            <TaskList />
+          </div>
         </div>
       </div>
     </div>

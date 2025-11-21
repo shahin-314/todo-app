@@ -86,72 +86,68 @@
 //################################################
 
 // src/components/TaskList.jsx
-
-// src/components/TaskList.jsx
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTasks, deleteTaskFromFirestore } from '../redux/taskSlice';
 import axios from 'axios';
 
 const TaskList = () => {
   const dispatch = useDispatch();
-  
-  // Yeh Redux se tasks lega (sabse latest)
   const tasks = useSelector((state) => state.tasks?.tasks || []);
-  
-  const [weather, setWeather] = useState(null);
-  const [city, setCity] = useState('');
-  const [error, setError] = useState(null);
-  
   const MOCK_USER_ID = 'demo-user-2025';
 
-  // Tasks load karne ke liye
+  // Load tasks on mount
   useEffect(() => {
     dispatch(fetchTasks(MOCK_USER_ID));
-  }, [dispatch, MOCK_USER_ID]);
+  }, [dispatch]);
 
-  // Weather fetch karne ke liye
+  // Weather Effect - Fixed + Fallback
   useEffect(() => {
     const fetchWeather = async (lat, lon) => {
       try {
         const res = await axios.get(
           `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=92157381ca10394906a29dc73237cade&units=metric`
         );
-        setWeather(res.data.main.temp);
-        setCity(res.data.name);
-      } catch {
-  setError('Weather unavailable - using fallback');
-  setWeather(25); // Mock temp for testing
-  setCity('Your City'); }
+        document.getElementById('weather-info').innerHTML = 
+          `Current Temp in <strong>${res.data.name}</strong>: ${res.data.main.temp}°C`;
+      } catch  {
+        document.getElementById('weather-info').innerHTML = 
+          'Current Temp in <strong>Your City</strong>: 27°C (Demo)';
+      }
     };
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (pos) => fetchWeather(pos.coords.latitude, pos.coords.coords.longitude),
-        () => fetchWeather(51.5074, -0.1278) // London fallback
+        (position) => {
+          fetchWeather(position.coords.latitude, position.coords.longitude);
+        },
+        () => {
+          // Permission denied ya error → fallback
+          fetchWeather(18.5204, 73.8567); // Pune fallback
+        }
       );
     } else {
-      fetchWeather(51.5074, -0.1278);
+      fetchWeather(18.5204, 73.8567);
     }
   }, []);
 
   const handleDelete = (taskId) => {
     dispatch(deleteTaskFromFirestore(MOCK_USER_ID, taskId));
-    // Redux khud update ho jayega, extra setTasks ki zarurat nahi
   };
 
   return (
-    <div>
+    <div className="mt-4">
       <h2>Task List</h2>
-      {error && <p className="text-danger">{error}</p>}
-      {weather !== null && (
-        <p className="text-muted">Current Temp in {city}: {weather}°C</p>
-      )}
+      
+      {/* Weather Display */}
+      <p className="text-muted mb-3" id="weather-info">
+        Loading weather...
+      </p>
 
       {tasks.length === 0 ? (
-        <p>No tasks yet. Add one above!</p>
+        <div className="alert alert-info">No tasks yet. Add one above!</div>
       ) : (
-        <ul className="list-group mt-3">
+        <ul className="list-group">
           {tasks.map((task) => (
             <li
               key={task.id}
@@ -163,12 +159,12 @@ const TaskList = () => {
                   : 'list-group-item-success'
               }`}
             >
-              <span>{task.text}</span>
+              <span className="fw-medium">{task.text}</span>
               <div>
-                <span className="badge bg-primary me-2">{task.priority}</span>
+                <span className="badge bg-primary me-3">{task.priority}</span>
                 <button
-                  className="btn btn-sm btn-danger"
                   onClick={() => handleDelete(task.id)}
+                  className="btn btn-sm btn-outline-danger"
                 >
                   Delete
                 </button>
